@@ -5,11 +5,11 @@
 	"name": "Mediumcore Adventure",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Me!"
+		"notalizard"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/NotALizard/Fabric-Mediumcore-Adventure"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/mediumcore-adventure/icon.png",
@@ -20,6 +20,9 @@
 		],
 		"fabric-datagen": [
 			"notalizard.mediumcore_adventure.MediumcoreAdventureDataGenerator"
+		],
+		"client": [
+			"notalizard.mediumcore_adventure.MediumcoreAdventureClient"
 		]
 	},
 	"mixins": [
