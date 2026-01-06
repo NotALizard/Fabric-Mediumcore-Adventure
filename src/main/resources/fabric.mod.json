@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"notalizard.mediumcore_adventure.MediumcoreAdventure"
+			"notalizard.mediumcore_adventure.MediumcoreAdventureMod"
 		],
 		"fabric-datagen": [
 			"notalizard.mediumcore_adventure.MediumcoreAdventureDataGenerator"

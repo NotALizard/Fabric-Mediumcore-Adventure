@@ -15,7 +15,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import notalizard.mediumcore_adventure.MediumcoreAdventure;
+import notalizard.mediumcore_adventure.MediumcoreAdventureMod;
 
 public class ModItems {
 
@@ -23,7 +23,7 @@ public class ModItems {
     public static final Item HEART_FRAGMENT = registerItem("heart_fragment", new Item.Settings().rarity(Rarity.RARE).maxCount(16));
 
     private static Item registerItem(String name, Item.Settings itemSettings){
-        Identifier id = Identifier.of(MediumcoreAdventure.MOD_ID, name);
+        Identifier id = Identifier.of(MediumcoreAdventureMod.MOD_ID, name);
         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, id);
         Item.Settings settings = itemSettings.registryKey(key);
 
@@ -31,7 +31,7 @@ public class ModItems {
     }
 
     public static void registerModItems(){
-        MediumcoreAdventure.LOGGER.info("Registering Mod Items for " + MediumcoreAdventure.MOD_ID);
+        MediumcoreAdventureMod.LOGGER.info("Registering Mod Items for " + MediumcoreAdventureMod.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.add(HEART);
