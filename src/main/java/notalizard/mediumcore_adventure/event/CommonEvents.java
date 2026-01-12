@@ -18,7 +18,7 @@ public class CommonEvents {
         ServerPlayerEvents.AFTER_RESPAWN.register((ServerPlayerEntity oldPlayer, ServerPlayerEntity newPlayer, boolean alive) -> {
             //TODO: check gamerule
             double currentMax = MediumcoreDataManager.getMaxHp(newPlayer.getUuid(), newPlayer.getEntityWorld().getServer());
-            applyMaxHp(newPlayer, currentMax);
+            applyMaxHp(newPlayer, currentMax, 0);
         });
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
             if(!(entity instanceof ServerPlayerEntity player)) return;
@@ -31,14 +31,14 @@ public class CommonEvents {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             //TODO: check gamerule
             double currentMax = MediumcoreDataManager.getMaxHp(handler.player.getUuid(), handler.player.getEntityWorld().getServer());
-            applyMaxHp(handler.player, currentMax);
+            applyMaxHp(handler.player, currentMax, 0);
         });
     }
 
-    public static void applyMaxHp (ServerPlayerEntity player, double health){
+    public static void applyMaxHp (ServerPlayerEntity player, double health, float gain){
         double diff = health - 20.0D;
         EntityAttributeInstance maxHpAttr = player.getAttributeInstance(EntityAttributes.MAX_HEALTH);
         maxHpAttr.overwritePersistentModifier(new EntityAttributeModifier(Identifier.of(MediumcoreAdventureMod.MOD_ID, "mediumcore_max_hp_adjustment"), diff, EntityAttributeModifier.Operation.ADD_VALUE));
-        player.setHealth(Math.clamp(player.getHealth(), 0, player.getMaxHealth()));
+        player.setHealth(Math.clamp(player.getHealth() + Math.max(gain, 0), 0, player.getMaxHealth()));
     }
 }

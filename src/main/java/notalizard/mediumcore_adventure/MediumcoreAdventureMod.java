@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import notalizard.mediumcore_adventure.Item.ModItems;
 import notalizard.mediumcore_adventure.event.CommonEvents;
 import notalizard.mediumcore_adventure.misc.MediumcoreDataManager;
+import notalizard.mediumcore_adventure.misc.MediumcoreLootTables;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,5 +23,6 @@ public class MediumcoreAdventureMod implements ModInitializer {
 		ModItems.registerModItems();
 		MediumcoreDataManager.init();
 		CommonEvents.onInitialize();
+		MediumcoreLootTables.modifyLootTables();
 	}
 }

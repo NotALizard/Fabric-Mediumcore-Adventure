@@ -31,15 +31,18 @@ public class MediumcoreDataManager
 
     public static boolean setMaxHp(UUID uuid, MinecraftServer server, double health) {
         if (getMaxHp(uuid, server) == health) return false;
+
+        MediumcoreData data = PlayerDataApi.getCustomDataFor(server, uuid, MEDIUMCORE_DATA_STORAGE);
+        if (data == null) data = new MediumcoreData();
+        double oldHealth = data.mediumcoreHealth;
+        data.mediumcoreHealth = health;
+        PlayerDataApi.setCustomDataFor(server, uuid, MEDIUMCORE_DATA_STORAGE, data);
+
         ServerPlayerEntity player = server.getPlayerManager().getPlayer(uuid);
         boolean isOnline = player != null;
         if (isOnline) {
-            applyMaxHp(player, health);
+            applyMaxHp(player, health, (float)(health - oldHealth));
         }
-        MediumcoreData data = PlayerDataApi.getCustomDataFor(server, uuid, MEDIUMCORE_DATA_STORAGE);
-        if (data == null) data = new MediumcoreData();
-        data.mediumcoreHealth = health;
-        PlayerDataApi.setCustomDataFor(server, uuid, MEDIUMCORE_DATA_STORAGE, data);
         return true;
     }
 
